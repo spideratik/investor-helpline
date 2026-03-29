@@ -1,0 +1,6 @@
+name: Helpline-Dev
+variables:
+  - name: base_url
+    value: http://localhost:5000
+  - name: token
+    value: ""
