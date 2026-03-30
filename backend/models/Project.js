@@ -69,6 +69,7 @@ const ProjectSchema = new mongoose.Schema({
     }],
   },
 
+  transactionId: { type: String, default: "" },
   isVerified: { type: Boolean, default: false }
 }, { timestamps: true });
 

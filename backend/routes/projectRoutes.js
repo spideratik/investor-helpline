@@ -1,24 +1,45 @@
 const express = require('express');
 const router = express.Router();
-const { createProject, getAllProjects, verifyProject } = require('../controllers/projectController');
+const {
+  createProject,
+  getAllProjects,
+  getPendingProjects,
+  getMyProjects,
+  verifyProject,
+  rejectProject,
+} = require('../controllers/projectController');
 const { protect, adminOnly } = require('../middleware/authMiddleware');
 const multer = require('multer');
 
-// Configure Multer for image handling
-const upload = multer({ dest: 'uploads/' });
+// Configure Multer for image uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, 'uploads/'),
+  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`)
+});
+const upload = multer({ storage });
 
-// --- ROUTES ---
-
-// 1. Public: Get all projects (Use one clean route)
-// URL: GET /api/projects
+// Public: Get all VERIFIED projects (investor home page)
+// GET /api/projects
 router.get('/', getAllProjects);
 
-// 2. Protected: Create a new project (For Developers)
-// URL: POST /api/projects/create
-router.post('/create', protect, upload.array('photos'), createProject);
+// Protected Developer: Get my own projects
+// GET /api/projects/mine
+router.get('/mine', protect, getMyProjects);
 
-// 3. Admin Only: Verify a project
-// URL: PUT /api/projects/verify/:id
+// Admin only: Get all PENDING projects
+// GET /api/projects/pending
+router.get('/pending', protect, adminOnly, getPendingProjects);
+
+// Protected Developer: Submit a new project
+// POST /api/projects/create
+router.post('/create', protect, upload.array('photos', 10), createProject);
+
+// Admin only: Verify a project
+// PUT /api/projects/verify/:id
 router.put('/verify/:id', protect, adminOnly, verifyProject);
+
+// Admin only: Reject a project
+// PUT /api/projects/reject/:id
+router.put('/reject/:id', protect, adminOnly, rejectProject);
 
 module.exports = router;
