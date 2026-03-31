@@ -90,6 +90,7 @@ const ProjectOnboardingForm = () => {
                 <option value="Residential">আবাসিক (Residential)</option>
                 <option value="Commercial">বাণিজ্যিক (Commercial)</option>
                 <option value="Mixed">মিশ্র (Mixed Use)</option>
+                <option value="personal">জমি</option>
               </select>
             </div>
             <div>

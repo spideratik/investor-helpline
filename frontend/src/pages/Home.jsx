@@ -4,6 +4,13 @@ import { Search, ShieldCheck, BarChart3, MapPin, Calendar, TrendingUp, MessageCi
 
 const API = 'http://localhost:5000';
 
+const toBengali = (num) => {
+  const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+  return String(num).replace(/[0-9]/g, d => bn[d]);
+};
+
+
+
 const Home = () => {
   const [projects, setProjects] = useState([]);
   const [filtered, setFiltered] = useState([]);
@@ -111,7 +118,7 @@ const Home = () => {
         {/* Stats row */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: 40, flexWrap: 'wrap' }}>
           {[
-            { label: 'যাচাইকৃত প্রজেক্ট', value: projects.length || '০' },
+            { label: 'যাচাইকৃত প্রজেক্ট', value: toBengali(projects.length) || '০' },
             { label: 'নিবন্ধিত ডেভেলপার', value: '১০+' },
             { label: 'বিনিয়োগকারী', value: '৫০+' },
           ].map((s, i) => (
@@ -124,7 +131,7 @@ const Home = () => {
       </section>
 
       {/* ===== SEARCH ===== */}
-      <section style={{ maxWidth: 900, margin: '0 auto 48px', padding: '0 16px' }}>
+      <section style={{ maxWidth: '100%', margin: '0 auto 48px', padding: '0 16px' }}>
         <div style={{
           background: '#fff', borderRadius: 16, boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
           border: '1px solid #e2e8f0', padding: '16px 20px',
@@ -148,13 +155,13 @@ const Home = () => {
             </button>
           )}
           <span style={{ fontSize: 12, color: '#94a3b8', whiteSpace: 'nowrap' }}>
-            {filtered.length}টি যাচাইকৃত প্রজেক্ট
+            {toBengali(filtered.length)}টি যাচাইকৃত প্রজেক্ট
           </span>
         </div>
       </section>
 
       {/* ===== PROJECT LIST ===== */}
-      <section style={{ maxWidth: 900, margin: '0 auto 64px', padding: '0 16px' }}>
+      <section style={{ maxWidth: '100%', margin: '0 auto 64px', padding: '0 16px' }}>
         <h2 style={{ fontSize: 22, fontWeight: 800, color: '#0f172a', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 10 }}>
           <BarChart3 size={22} color="#3b82f6" /> যাচাইকৃত প্রজেক্টসমূহ
         </h2>
@@ -171,14 +178,14 @@ const Home = () => {
               <div key={project._id} style={{
                 background: '#fff', border: '1px solid #e2e8f0', borderRadius: 20,
                 boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
-                padding: 24, display: 'flex', gap: 24, alignItems: 'center',
-                flexWrap: 'wrap', transition: 'box-shadow 0.2s',
+                padding: 24, display: 'flex', flexWrap: 'wrap',
+                gap: 20, alignItems: 'center', transition: 'box-shadow 0.2s',
               }}
                 onMouseEnter={e => e.currentTarget.style.boxShadow = '0 8px 30px rgba(59,130,246,0.12)'}
                 onMouseLeave={e => e.currentTarget.style.boxShadow = '0 2px 12px rgba(0,0,0,0.05)'}
               >
                 {/* Left */}
-                <div style={{ flex: 1, minWidth: 200 }}>
+                <div style={{ flex: '1 1 220px', minWidth: 0 }}>
                   <div style={{ display: 'flex', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
                     <span style={{ background: '#dcfce7', color: '#15803d', fontSize: 10, fontWeight: 700, padding: '3px 10px', borderRadius: 99, display: 'flex', alignItems: 'center', gap: 4 }}>
                       <ShieldCheck size={10} /> যাচাইকৃত
@@ -210,10 +217,10 @@ const Home = () => {
                 </div>
 
                 {/* Right: progress + investment */}
-                <div style={{ minWidth: 200, flex: 1 }}>
+                <div style={{ flex: '1 1 180px', minWidth: 0 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, fontWeight: 700, marginBottom: 6 }}>
                     <span style={{ color: '#64748b' }}>অগ্রগতি</span>
-                    <span style={{ color: '#3b82f6' }}>{project.currentStatus?.completionPercentage ?? 0}%</span>
+                    <span style={{ color: '#3b82f6' }}>{toBengali(project.currentStatus?.completionPercentage ?? 0)}%</span>
                   </div>
                   <div style={{ background: '#f1f5f9', borderRadius: 99, height: 10, overflow: 'hidden' }}>
                     <div style={{
@@ -250,7 +257,7 @@ const Home = () => {
       <section style={{
         background: 'linear-gradient(135deg, #0f172a, #1e3a5f)',
         borderRadius: 24, padding: '48px 32px',
-        maxWidth: 900, margin: '0 auto 48px',
+        maxWidth: '100%', margin: '0 auto 48px',
       }}>
         <h2 style={{ fontSize: 24, fontWeight: 800, color: '#f8fafc', textAlign: 'center', marginBottom: 8 }}>
           যোগাযোগ করুন
