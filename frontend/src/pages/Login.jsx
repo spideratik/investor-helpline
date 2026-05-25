@@ -38,7 +38,7 @@ const Login = () => {
   return (
     <div style={styles.authContainer}>
       <form onSubmit={handleLogin} style={styles.authForm}>
-        <h2 style={{ marginBottom: '20px', color: '#2c3e50' }}>Login to Protiti</h2>
+        <h2 style={{ marginBottom: '20px', color: '#2c3e50' }}>Login to BuyLandsBd</h2>
         <input 
           type="email" 
           placeholder="Email" 

@@ -26,7 +26,7 @@ const Signup = () => {
   return (
     <div style={styles.authContainer}>
       <form onSubmit={handleSubmit} style={styles.authForm}>
-        <h2 style={{ color: '#2c3e50', marginBottom: '20px' }}>Join Protiti</h2>
+        <h2 style={{ color: '#2c3e50', marginBottom: '20px' }}>Join to BuyLandsBd</h2>
         
         <input 
           type="text" 

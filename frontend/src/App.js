@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
-
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -8,6 +8,8 @@ import AdminDashboard from './pages/AdminDashboard';
 import DeveloperDash from './pages/DeveloperDash';
 import ProjectOnboardingForm from './ProjectOnboardingForm';
 import ProtectedRoute from './components/ProtectedRoute';
+import PropertyTermsBangla from './pages/PropertyTermsBangla';
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -29,6 +31,9 @@ function App() {
 
   return (
     <Router>
+
+      <ScrollToTop />
+      
       <div className="min-h-screen bg-slate-50" style={{ fontFamily: "'Hind Siliguri', 'Noto Sans Bengali', sans-serif" }}>
 
         {/* NAVIGATION */}
@@ -44,13 +49,13 @@ function App() {
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 20, fontWeight: 900, color: '#fff',
                 boxShadow: '0 0 16px rgba(59,130,246,0.5)'
-              }}>স</div>
+              }}>B</div>
               <div>
                 <div style={{
                   fontSize: 20, fontWeight: 800, letterSpacing: '-0.3px',
                   background: 'linear-gradient(90deg, #60a5fa, #22d3ee)',
                   WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'
-                }}>স্বচ্ছ বিনিয়োগ</div>
+                }}>BuyLandsBd</div>
                 <div style={{ fontSize: 9, color: '#94a3b8', letterSpacing: '1.5px', textTransform: 'uppercase', marginTop: -2 }}>
                   Transparent Investment
                 </div>
@@ -58,6 +63,7 @@ function App() {
             </Link>
 
             {/* Nav links */}
+  
             <div className="flex items-center gap-5 text-sm font-semibold">
               <Link to="/" style={{ color: '#cbd5e1' }} className="hover:text-white transition">বিনিয়োগ ফিড</Link>
 
@@ -79,6 +85,7 @@ function App() {
                 <>
                   <Link to="/login" style={{ color: '#cbd5e1' }} className="hover:text-white transition">লগইন</Link>
                   <Link to="/signup" style={{ color: '#cbd5e1' }} className="hover:text-white transition">সাইনআপ</Link>
+                  
                 </>
               )}
 
@@ -99,6 +106,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/propertytermsbangla" element={<PropertyTermsBangla />} />
+            
+          
             <Route path="/onboard" element={
               <ProtectedRoute allowedRoles={['developer']}>
                 <ProjectOnboardingForm />
@@ -113,8 +123,8 @@ function App() {
               <ProtectedRoute allowedRoles={['admin']}>
                 <AdminDashboard />
               </ProtectedRoute>
+            
             } />
-            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
 
@@ -147,6 +157,7 @@ function App() {
                 <div><Link to="/login" style={{ color: '#94a3b8' }} className="hover:text-white transition">লগইন</Link></div>
                 <div><Link to="/signup" style={{ color: '#94a3b8' }} className="hover:text-white transition">সাইনআপ</Link></div>
                 <div><Link to="/onboard" style={{ color: '#94a3b8' }} className="hover:text-white transition">ডেভেলপার পোর্টাল</Link></div>
+                <div><Link to="/propertytermsbangla" style={{ color: '#94a3b8' }} className="hover:text-white transition">টার্মস এন্ড কন্ডিশনস</Link></div>
               </div>
             </div>
           </div>
